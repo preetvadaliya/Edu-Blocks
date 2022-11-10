@@ -8,6 +8,7 @@ Blockly.JavaScript['movements_x'] = function (block) {
 	code += `${cordinate.toString().padStart(3, '0')}`;
 	code += '+';
 	code += '000';
+	code += `${speed.toString().padStart(3, '0')}`;
 	return code;
 };
 
