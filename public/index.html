@@ -68,7 +68,14 @@
 				<block type="stop"></block>
 				<block type="rotate"></block>
 			</category>
+			<category name="Lights">
+				<block type="edu_bot_light"></block>
+				<block type="edu_bot_light_off"></block>
+				<block type="edu_bot_light_with_time"></block>
+				<block type="edu_bot_light_change_with_time"></block>
+			</category>
 			<category name="Sensors">
+				<block type="wait_until"></block>
 				<block type="color_detection"></block>
 				<block type="distance_detection"></block>
 			</category>
@@ -108,8 +115,10 @@
 			</div>
 		</div>
 		<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+		<script src="../src/blocks/lights.js"></script>
 		<script src="../src/blocks/movement.js"></script>
 		<script src="../src/blocks/sensors.js"></script>
+		<script src="../src/generators/lights.js"></script>
 		<script src="../src/generators/movement.js"></script>
 		<script src="../src/generators/sensors.js"></script>
 		<script>

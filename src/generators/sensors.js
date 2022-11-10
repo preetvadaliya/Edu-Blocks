@@ -21,3 +21,13 @@ Blockly.JavaScript['distance_detection'] = function (block) {
 	var code = `71${distance.padStart(3, '0')}`;
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['wait_until'] = function (block) {
+	let condition = Blockly.JavaScript.valueToCode(
+		block,
+		'INPUT0',
+		Blockly.JavaScript.ORDER_ATOMIC
+	);
+	let body = Blockly.JavaScript.statementToCode(block, 'INPUT1');
+	return condition.replace('(', '').replace(')', '') + body.trim();
+};
