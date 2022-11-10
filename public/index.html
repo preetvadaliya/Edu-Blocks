@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Edubot | Blockly</title>
+		<style>
+			*,
+			*::after,
+			*::before {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<xml
+			xmlns="https://developers.google.com/blockly/xml"
+			id="toolbox"
+			style="display: none"
+		>
+			<category name="Movement">
+				<block type="movements_x">
+					<field name="DIR">+</field>
+				</block>
+				<block type="movements_x">
+					<field name="DIR">-</field>
+				</block>
+			</category>
+			<category name="Infinite Movement">
+				<block type="movement_y">
+					<field name="DIR">1</field>
+				</block>
+				<block type="movement_y">
+					<field name="DIR">2</field>
+				</block>
+			</category>
+			<category name="Drift Movement">
+				<block type="drift">
+					<field name="DIR">3</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">4</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">5</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">6</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">7</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">8</field>
+				</block>
+				<block type="drift">
+					<field name="DIR">9</field>
+				</block>
+				<block type="stop"></block>
+				<block type="rotate"></block>
+			</category>
+			<category name="Sensors">
+				<block type="color_detection"></block>
+				<block type="distance_detection"></block>
+			</category>
+			<category name="Events">
+				<block type="clap_detection"></block>
+			</category>
+			<category name="Sounds">
+				<block type="buzzer"></block>
+			</category>
+		</xml>
+		<div
+			style="
+				height: 100vh;
+				width: 100vw;
+				display: flex;
+				align-items: center;
+				justify-content: space-evenly;
+			"
+		>
+			<div
+				id="blockly-div"
+				style="height: 96vh; width: 60vw"
+			></div>
+			<div
+				style="height: 96vh; width: 35vw; border: 1px solid rgba(0, 0, 0, 0.12)"
+			>
+				<h2
+					style="font-family: monospace; text-align: center; padding: 16px 0px"
+				>
+					CODE
+				</h2>
+				<hr />
+				<pre
+					id="code"
+					style="font-size: 20px; padding: 16px"
+				></pre>
+			</div>
+		</div>
+		<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+		<script src="../src/blocks/movement.js"></script>
+		<script src="../src/blocks/sensors.js"></script>
+		<script src="../src/generators/movement.js"></script>
+		<script src="../src/generators/sensors.js"></script>
+		<script>
+			var toolbox = document.getElementById('toolbox');
+			var options = {
+				toolbox: toolbox,
+				collapse: true,
+				comments: true,
+				disable: true,
+				maxBlocks: Infinity,
+				trashcan: true,
+				horizontalLayout: false,
+				toolboxPosition: 'start',
+				css: true,
+				media: 'https://blockly-demo.appspot.com/static/media/',
+				rtl: false,
+				scrollbars: true,
+				sounds: true,
+				oneBasedIndex: true,
+				renderer: 'zelos',
+			};
+			var workspace = Blockly.inject('blockly-div', options);
+			function myUpdateFunction(event) {
+				let code = Blockly.JavaScript.workspaceToCode(workspace);
+				document.getElementById('code').innerText = code;
+			}
+			workspace.addChangeListener(myUpdateFunction);
+		</script>
+	</body>
+</html>
