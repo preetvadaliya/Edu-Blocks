@@ -66,7 +66,7 @@ Blockly.Blocks['distance_detection'] = {
 Blockly.Blocks['wait_until'] = {
 	init: function () {
 		this.appendValueInput('INPUT0').setCheck(null).appendField('wait until');
-		this.appendStatementInput('INPUT1').setCheck(null).appendField('do');
+		this.appendStatementInput('INPUT1').setCheck(null);
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(230);
