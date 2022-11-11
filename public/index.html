@@ -68,6 +68,46 @@
 				<block type="stop"></block>
 				<block type="rotate"></block>
 			</category>
+			<category name="Angular Movement">
+				<block type="angular_movement">
+					<field name="OP1">R</field>
+				</block>
+				<block type="angular_movement">
+					<field name="OP1">L</field>
+				</block>
+			</category>
+			<category name="Movement with Stop">
+				<block type="movement_with_stop">
+					<field name="DIR">1</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">2</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">3</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">4</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">5</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">6</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">7</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">8</field>
+				</block>
+				<block type="movement_with_stop">
+					<field name="DIR">9</field>
+				</block>
+			</category>
+			<category name="Controls">
+				<block type="control_loop"></block>
+			</category>
 			<category name="Lights">
 				<block type="edu_bot_light"></block>
 				<block type="edu_bot_light_off"></block>
@@ -115,9 +155,11 @@
 			</div>
 		</div>
 		<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+		<script src="../src/blocks/controls.js"></script>
 		<script src="../src/blocks/lights.js"></script>
 		<script src="../src/blocks/movement.js"></script>
 		<script src="../src/blocks/sensors.js"></script>
+		<script src="../src/generators/controls.js"></script>
 		<script src="../src/generators/lights.js"></script>
 		<script src="../src/generators/movement.js"></script>
 		<script src="../src/generators/sensors.js"></script>
@@ -143,7 +185,11 @@
 			var workspace = Blockly.inject('blockly-div', options);
 			function myUpdateFunction(event) {
 				let code = Blockly.JavaScript.workspaceToCode(workspace);
-				document.getElementById('code').innerText = code;
+				let commands = code.split('#').map(function (x) {
+					return x.replace('\n', '');
+				});
+				commands.pop();
+				document.getElementById('code').innerText = commands.join('\n');
 			}
 			workspace.addChangeListener(myUpdateFunction);
 		</script>

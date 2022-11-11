@@ -8,13 +8,13 @@ Blockly.JavaScript['edu_bot_light'] = function (block) {
 					.padStart(3, '0')
 			: color;
 	let code = `2${position}${color}`;
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
 
 Blockly.JavaScript['edu_bot_light_off'] = function (block) {
 	let position = block.getFieldValue('OP0');
 	let code = `2${position}000`;
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
 
 Blockly.JavaScript['edu_bot_light_with_time'] = function (block) {
@@ -28,7 +28,7 @@ Blockly.JavaScript['edu_bot_light_with_time'] = function (block) {
 			: color;
 	let time = block.getFieldValue('OP2');
 	let code = `2${position}${color}51${time}2${position}000`;
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
 
 Blockly.JavaScript['edu_bot_light_change_with_time'] = function (block) {
@@ -49,5 +49,5 @@ Blockly.JavaScript['edu_bot_light_change_with_time'] = function (block) {
 			: toColor;
 	let time = block.getFieldValue('OP3');
 	let code = `2${position}${fromColor}51${time}2${position}${toColor}`;
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };

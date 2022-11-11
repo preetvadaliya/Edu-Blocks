@@ -59,7 +59,7 @@ Blockly.Blocks['movement_y'] = {
 				]),
 				'DIR'
 			)
-			.appendField('with speed')
+			.appendField('with')
 			.appendField(
 				new Blockly.FieldDropdown([
 					['1', '200'],
@@ -76,7 +76,8 @@ Blockly.Blocks['movement_y'] = {
 					['12', '475'],
 				]),
 				'SPEED'
-			);
+			)
+			.appendField('speed');
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(230);
@@ -142,6 +143,127 @@ Blockly.Blocks['rotate'] = {
 	init: function () {
 		this.appendDummyInput()
 			.appendField('rotate above a point with')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['1', '200'],
+					['2', '225'],
+					['3', '250'],
+					['4', '275'],
+					['5', '300'],
+					['6', '325'],
+					['7', '350'],
+					['8', '375'],
+					['9', '400'],
+					['10', '425'],
+					['11', '450'],
+					['12', '475'],
+				]),
+				'SPEED'
+			)
+			.appendField('speed');
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(230);
+		this.setTooltip('');
+		this.setHelpUrl('');
+	},
+};
+
+Blockly.Blocks['angular_movement'] = {
+	init: function () {
+		this.appendDummyInput()
+			.appendField('move')
+			.appendField(new Blockly.FieldDropdown([['forward', 'F']]), 'OP0')
+			.appendField('with')
+			.appendField(new Blockly.FieldAngle(60), 'INPUT0')
+			.appendField('to')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['right', 'R'],
+					['left', 'L'],
+				]),
+				'OP1'
+			)
+			.appendField('for')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['1', '1'],
+					['2', '2'],
+					['3', '3'],
+					['4', '4'],
+					['5', '5'],
+					['6', '6'],
+					['7', '7'],
+					['8', '8'],
+					['9', '9'],
+				]),
+				'OP2'
+			)
+			.appendField('second with')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['1', '65'],
+					['2', '70'],
+					['3', '75'],
+					['4', '80'],
+					['5', '85'],
+					['6', '90'],
+					['7', '95'],
+					['8', '100'],
+					['9', '105'],
+				]),
+				'OP3'
+			)
+			.appendField('speed');
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(230);
+		this.setTooltip('');
+		this.setHelpUrl('');
+		this.getField('INPUT0').setValidator(this.validate.bind(this));
+	},
+	validate: function (value) {
+		if (value >= 1 && value <= 89) {
+			return value;
+		} else {
+			return null;
+		}
+	},
+};
+
+Blockly.Blocks['movement_with_stop'] = {
+	init: function () {
+		this.appendDummyInput()
+			.appendField('move')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['forward', '1'],
+					['backward', '2'],
+					['forward right', '3'],
+					['forward left', '4'],
+					['backward left', '5'],
+					['backward right', '6'],
+					['left', '8'],
+					['right', '9'],
+				]),
+				'DIR'
+			)
+			.appendField('for')
+			.appendField(
+				new Blockly.FieldDropdown([
+					['1', '10'],
+					['2', '20'],
+					['3', '30'],
+					['4', '40'],
+					['5', '50'],
+					['6', '60'],
+					['7', '70'],
+					['8', '80'],
+					['9', '90'],
+				]),
+				'SEC'
+			)
+			.appendField('seconds with')
 			.appendField(
 				new Blockly.FieldDropdown([
 					['1', '200'],

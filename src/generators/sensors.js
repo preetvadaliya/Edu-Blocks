@@ -1,12 +1,12 @@
 Blockly.JavaScript['clap_detection'] = function (block) {
 	var code = '8';
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
 
 Blockly.JavaScript['buzzer'] = function (block) {
 	var dropdown_op = block.getFieldValue('OP');
 	var code = `0${dropdown_op}`;
-	return code;
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
 
 Blockly.JavaScript['color_detection'] = function (block) {
@@ -29,5 +29,6 @@ Blockly.JavaScript['wait_until'] = function (block) {
 		Blockly.JavaScript.ORDER_ATOMIC
 	);
 	let body = Blockly.JavaScript.statementToCode(block, 'INPUT1');
-	return condition.replace('(', '').replace(')', '') + body.trim();
+	var code = condition.replace('(', '').replace(')', '') + body.trim();
+	return `${code}${block.getSurroundParent() === null ? '#' : ''}`;
 };
