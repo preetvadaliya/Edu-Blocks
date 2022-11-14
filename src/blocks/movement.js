@@ -27,15 +27,18 @@ Blockly.Blocks['movements_x'] = {
 			.appendField('seconds with')
 			.appendField(
 				new Blockly.FieldDropdown([
-					['1', '65'],
-					['2', '70'],
-					['3', '75'],
-					['4', '80'],
-					['5', '85'],
-					['6', '90'],
-					['7', '95'],
-					['8', '100'],
-					['9', '105'],
+					['1', '200'],
+					['2', '225'],
+					['3', '250'],
+					['4', '275'],
+					['5', '300'],
+					['6', '325'],
+					['7', '350'],
+					['8', '375'],
+					['9', '400'],
+					['10', '425'],
+					['11', '450'],
+					['12', '475'],
 				]),
 				'SPEED'
 			)
@@ -172,7 +175,7 @@ Blockly.Blocks['rotate'] = {
 Blockly.Blocks['angular_movement'] = {
 	init: function () {
 		this.appendDummyInput()
-			.appendField('move')
+			.appendField('turn')
 			.appendField(new Blockly.FieldDropdown([['forward', 'F']]), 'OP0')
 			.appendField('with')
 			.appendField(new Blockly.FieldAngle(60), 'INPUT0')
@@ -202,15 +205,18 @@ Blockly.Blocks['angular_movement'] = {
 			.appendField('second with')
 			.appendField(
 				new Blockly.FieldDropdown([
-					['1', '65'],
-					['2', '70'],
-					['3', '75'],
-					['4', '80'],
-					['5', '85'],
-					['6', '90'],
-					['7', '95'],
-					['8', '100'],
-					['9', '105'],
+					['1', '200'],
+					['2', '225'],
+					['3', '250'],
+					['4', '275'],
+					['5', '300'],
+					['6', '325'],
+					['7', '350'],
+					['8', '375'],
+					['9', '400'],
+					['10', '425'],
+					['11', '450'],
+					['12', '475'],
 				]),
 				'OP3'
 			)
@@ -234,7 +240,7 @@ Blockly.Blocks['angular_movement'] = {
 Blockly.Blocks['movement_with_stop'] = {
 	init: function () {
 		this.appendDummyInput()
-			.appendField('move')
+			.appendField('move', 'F0')
 			.appendField(
 				new Blockly.FieldDropdown([
 					['forward', '1'],
@@ -287,5 +293,13 @@ Blockly.Blocks['movement_with_stop'] = {
 		this.setColour(230);
 		this.setTooltip('');
 		this.setHelpUrl('');
+		this.getField('DIR').setValidator(this.validate);
+	},
+	validate: function (value) {
+		if (value === '1' || value === '2') {
+			this.getSourceBlock().getField('F0').setValue('move');
+		} else {
+			this.getSourceBlock().getField('F0').setValue('drift');
+		}
 	},
 };
